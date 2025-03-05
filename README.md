@@ -1,12 +1,15 @@
 # ParaSpeechCaps: Scaling Rich Style-Prompted Text-to-Speech Datasets
-[![ParaSpeechCaps Dataset](https://img.shields.io/badge/🤗-ParaSpeechCaps%20Dataset-yellow)](https://huggingface.co/datasets/ajd12342/paraspeechcaps)
-[![ParaSpeechCaps Full Model](https://img.shields.io/badge/🤗-ParaSpeechCaps%20Full%20Model-blue)](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps)
-[![ParaSpeechCaps Base Model](https://img.shields.io/badge/🤗-ParaSpeechCaps%20Base%20Model-green)](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base)
-[![Paper](https://img.shields.io/badge/Paper-PDF-orange)]()
+[![Dataset](https://img.shields.io/badge/🤗%20Dataset-yellow.svg)](https://huggingface.co/datasets/ajd12342/paraspeechcaps)
+[![Full Model](https://img.shields.io/badge/🤗%20Full%20Model-9cf.svg)](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps)
+[![Base Model](https://img.shields.io/badge/🤗%20Base%20Model-87ceeb.svg)](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base)
+[![Demo](https://img.shields.io/badge/🌐%20Demo-ff69b4.svg)](https://paraspeechcaps.github.io/)
+[![Space](https://img.shields.io/badge/🤗%20Space-blueviolet.svg)](https://huggingface.co/spaces/ajd12342/paraspeechcaps)
+[![arXiv](https://img.shields.io/badge/📝%20arXiv-orange.svg)]()
 
 This repository contains the official code for [Scaling Rich Style-Prompted Text-to-Speech Datasets](). We release ParaSpeechCaps (Paralinguistic Speech Captions), a large-scale dataset that annotates speech utterances with rich style captions at [ajd12342/paraspeechcaps](https://huggingface.co/datasets/ajd12342/paraspeechcaps). We also release [Parler-TTS](https://github.com/huggingface/parler-tts) models finetuned on our dataset at [ajd12342/parler-tts-mini-v1-paraspeechcaps](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps) and [ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base).
 
-Please take a look at our [paper]() and our [demo website](https://paraspeechcaps.github.io/) for more information.
+Try out our models in our [interactive demo](https://huggingface.co/spaces/ajd12342/paraspeechcaps), listen to examples at our [demo website](https://paraspeechcaps.github.io/), and read our [paper]().
+
 
 **LICENSE:** This code repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. The dataset and models are licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
