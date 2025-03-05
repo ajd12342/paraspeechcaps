@@ -20,7 +20,15 @@ We finetune Parler-TTS on our ParaSpeechCaps dataset to create TTS models that c
 The ParaSpeechCaps dataset is available on the Hugging Face Hub at [`ajd12342/paraspeechcaps`](https://huggingface.co/datasets/ajd12342/paraspeechcaps).
 
 ### 2.1 Installation
-This repository has been tested with Python 3.11 (`conda create -n paraspeechcaps python=3.11`), but most other versions should probably work.
+
+#### 2.1.1 Setup Python environment
+This repository has been tested with Conda and Python 3.11. Other Python versions and package managers (`venv`, `uv`, etc.) should probably work.
+```bash
+conda create -n paraspeechcaps python=3.11
+conda activate paraspeechcaps
+```
+
+#### 2.1.2 Install dependencies
 ```bash
 pip install datasets
 ```
@@ -44,7 +52,7 @@ print(example)
 ```
 
 ### 2.2 Detailed Usage
-Please refer to the [dataset](https://github.com/ajd12342/paraspeechcaps/tree/main/dataset) folder for details on how to use it.
+Please refer to the [dataset](https://github.com/ajd12342/paraspeechcaps/tree/main/dataset) folder for more details on how to use it.
 
 ### TODOS
 - [ ] Release code for our human annotation pipeline
@@ -55,7 +63,15 @@ Please refer to the [dataset](https://github.com/ajd12342/paraspeechcaps/tree/ma
 The ParaSpeechCaps models are available on the Hugging Face Hub at [`ajd12342/parler-tts-mini-v1-paraspeechcaps`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps) (trained on the full dataset) and [`ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base) (trained on the human-annotated subset).
 
 ### 3.1 Installation
-This repository has been tested with Python 3.11 (`conda create -n paraspeechcaps python=3.11`), but most other versions should probably work.
+
+#### 3.1.1 Setup Python environment
+This repository has been tested with Conda and Python 3.11. Other Python versions and package managers (`venv`, `uv`, etc.) should probably work.
+```bash
+conda create -n paraspeechcaps python=3.11
+conda activate paraspeechcaps
+```
+
+#### 3.1.2 Install dependencies
 ```bash
 git clone https://github.com/ajd12342/paraspeechcaps.git
 cd paraspeechcaps/model/parler-tts

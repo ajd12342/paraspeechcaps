@@ -1,8 +1,12 @@
-# ParaSpeechCaps Model
+# ParaSpeechCaps Models
 
-This folder contains code related to our ParaSpeechCaps-finetuned Parler-TTS models.
+This folder contains code related to our ParaSpeechCaps-finetuned Parler-TTS models. We provide two variants of our model:
+- [`ajd12342/parler-tts-mini-v1-paraspeechcaps`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps): Trained on the complete ParaSpeechCaps dataset
+- [`ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base): Trained only on the human-annotated ParaSpeechCaps-Base subset.
 
-## Installation
+Model weights are licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+## 1. Installation
 This repository has been tested with Python 3.11 (`conda create -n paraspeechcaps python=3.11`), but most other versions should probably work.
 ```bash
 git clone https://github.com/ajd12342/paraspeechcaps.git
@@ -11,7 +15,7 @@ pip install -e .[train]
 pip install gradio # Only needed if you want to use the Gradio web interface
 ```
 
-## Inference
+## 2. Inference
 We provide three ways to infer with our models:
 
 1. Jupyter Notebook (`inference/run_inference.ipynb`)
@@ -36,9 +40,3 @@ The Gradio web interface is a UI version of the command line interface. It can b
 ```bash
 python run_inference_gradio_app.py
 ```
-
-### Available Models
-
-We provide two variants of our model:
-- [`ajd12342/parler-tts-mini-v1-paraspeechcaps`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps): Trained on the complete ParaSpeechCaps dataset
-- [`ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base): Trained only on the human-annotated ParaSpeechCaps-Base subset.
