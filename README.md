@@ -31,7 +31,7 @@ Try out our models in our [interactive demo](https://huggingface.co/spaces/ajd12
 We finetune Parler-TTS on our ParaSpeechCaps dataset to create TTS models that can generate speech while controlling for rich styles (pitch, rhythm, clarity, emotion, etc.) with a textual style prompt ('A male speaker's speech is distinguished by a slurred articulation, delivered at a measured pace in a clear environment.').
 
 ## 2. ParaSpeechCaps Dataset
-The ParaSpeechCaps dataset is available on the Hugging Face Hub at [`ajd12342/paraspeechcaps`](https://huggingface.co/datasets/ajd12342/paraspeechcaps).
+The ParaSpeechCaps dataset is available on the Hugging Face Hub at [`ajd12342/paraspeechcaps`](https://huggingface.co/datasets/ajd12342/paraspeechcaps). Please refer to the [dataset](https://github.com/ajd12342/paraspeechcaps/tree/main/dataset) folder for more details on how to use it.
 
 ### 2.1 Installation
 
@@ -64,15 +64,13 @@ holdout = load_dataset("ajd12342/paraspeechcaps", split="holdout")
 example = train_base[0]
 print(example)
 ```
-Please refer to the [dataset](https://github.com/ajd12342/paraspeechcaps/tree/main/dataset) folder for more details on how to use it.
 
 ### TODOS
 - [ ] Release code for our human annotation pipeline
 - [ ] Release code for our automatic annotation pipeline
 
 ## 3. ParaSpeechCaps Models
-
-The ParaSpeechCaps models are available on the Hugging Face Hub at [`ajd12342/parler-tts-mini-v1-paraspeechcaps`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps) (trained on the full dataset) and [`ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base) (trained on the human-annotated subset).
+The ParaSpeechCaps models are available on the Hugging Face Hub at [`ajd12342/parler-tts-mini-v1-paraspeechcaps`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps) (trained on the full dataset) and [`ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base) (trained on the human-annotated subset). Please refer to the [model](https://github.com/ajd12342/paraspeechcaps/tree/main/model) folder for more details.
 
 ### 3.1 Installation
 
