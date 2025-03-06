@@ -11,7 +11,18 @@ This repository contains the official code for [Scaling Rich Style-Prompted Text
 Try out our models in our [interactive demo](https://huggingface.co/spaces/ajd12342/paraspeechcaps), listen to examples at our [demo website](https://paraspeechcaps.github.io/), and read our [paper]().
 
 
-**LICENSE:** This code repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. The dataset and models are licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+**LICENSE:** This code repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. The dataset and models are licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
+
+## Table of Contents
+1. [Overview](#1-overview)
+2. [ParaSpeechCaps Dataset](#2-paraspeechcaps-dataset)
+   - [Installation](#21-installation)
+   - [Quickstart](#22-quickstart)
+3. [ParaSpeechCaps Models](#3-paraspeechcaps-models)
+   - [Installation](#31-installation)
+   - [Quickstart](#32-quickstart)
+4. [Citation](#4-citation)
+5. [Acknowledgements](#5-acknowledgements)
 
 ## 1. Overview
 
@@ -53,8 +64,6 @@ holdout = load_dataset("ajd12342/paraspeechcaps", split="holdout")
 example = train_base[0]
 print(example)
 ```
-
-### 2.2 Detailed Usage
 Please refer to the [dataset](https://github.com/ajd12342/paraspeechcaps/tree/main/dataset) folder for more details on how to use it.
 
 ### TODOS

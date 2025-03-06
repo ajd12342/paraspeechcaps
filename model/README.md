@@ -4,7 +4,11 @@ This folder contains code related to our ParaSpeechCaps-finetuned Parler-TTS mod
 - [`ajd12342/parler-tts-mini-v1-paraspeechcaps`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps): Trained on the complete ParaSpeechCaps dataset
 - [`ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base`](https://huggingface.co/ajd12342/parler-tts-mini-v1-paraspeechcaps-only-base): Trained only on the human-annotated ParaSpeechCaps-Base subset.
 
-Model weights are licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Model weights are licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
+
+## Table of Contents
+1. [Installation](#1-installation)
+2. [Inference](#2-inference)
 
 ## 1. Installation
 This repository has been tested with Python 3.11 (`conda create -n paraspeechcaps python=3.11`), but most other versions should probably work.

@@ -2,7 +2,17 @@
 
 This folder contains code related to the ParaSpeechCaps dataset, available on the HuggingFace Hub at [`ajd12342/paraspeechcaps`](https://huggingface.co/datasets/ajd12342/paraspeechcaps).
 
-The dataset is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+The dataset is licensed under the [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
+
+## Table of Contents
+1. [Installation](#1-installation)
+   - [Setup Python environment](#11-setup-python-environment)
+   - [Install dependencies](#12-install-dependencies)
+2. [Usage](#2-usage)
+   - [Load dataset annotations](#21-load-dataset-annotations)
+   - [Processing dataset audio](#22-processing-dataset-audio)
+3. [Dataset Structure](#3-dataset-structure)
+4. [Dataset Statistics](#4-dataset-statistics)
 
 ## 1. Installation
 ### 1.1 Setup Python environment
@@ -25,7 +35,10 @@ pip install git+https://github.com/haoheliu/voicefixer.git pydub
 ```
 
 ## 2. Usage
-The dataset provides style annotations and other metadata for each utterance in the dataset. You can inspect the dataset as follows:
+The dataset provides style annotations and other metadata for each utterance in the dataset.
+
+### 2.1 Load dataset annotations
+You can inspect the dataset as follows:
 ```py
 from datasets import load_dataset
 
@@ -42,14 +55,14 @@ holdout = load_dataset("ajd12342/paraspeechcaps", split="holdout")
 example = train_base[0]
 print(example)
 ```
-For ParaSpeechCaps-Base, we also provide full human intrinsic tag annotations for each example in the [`pscbase_speakerid_to_intrinsictags.json`](./pscbase_speakerid_to_intrinsictags.json) file, which is a JSON file mapping speaker IDs (in the `speakerid` column of the main dataset) to a list of intrinsic tags for each example, with duplicates preserved (since multiple annotators can select the same tag). The only difference between the intrinsic tags in this file and the intrinsic tags in the `intrinsic_tags` column of the main dataset is that the dataset only contains tags that were selected by at least 2 annotators, while the full file contains all annotated tags.
+For ParaSpeechCaps-Base, we also provide full human intrinsic tag annotations for each example in the [`pscbase_speakerid_to_intrinsictags.json`](./pscbase_speakerid_to_intrinsictags.json) file, licensed under [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), which is a JSON file mapping speaker IDs (in the `speakerid` column of the main dataset) to a list of intrinsic tags for each example, with duplicates preserved (since multiple annotators can select the same tag). The only difference between the intrinsic tags in this file and the intrinsic tags in the `intrinsic_tags` column of the main dataset is that the dataset only contains tags that were selected by at least 2 annotators, while the full file contains all annotated tags.
 
-### 2.1 Processing dataset audio
+### 2.2 Processing dataset audio
 Our dataset provides style annotations and other metadata, but not the audio files themselves. Instead, it contains relative audio paths (in the `relative_audio_path` column). Here, we provide instructions on how to download the audio files from the respective source datasets (VoxCeleb, Expresso, EARS, Emilia) and process them.
 
 You can decide where to download the audio files and place them for each source dataset; let's denote their root directories as `${voxceleb_root}`, `${expresso_root}`, `${ears_root}`, and `${emilia_root}` respectively.
 
-#### 2.1.1 VoxCeleb
+#### 2.2.1 VoxCeleb
 Request access to the [VoxCeleb dataset](https://mm.kaist.ac.kr/datasets/voxceleb/), download the audio files for both VoxCeleb1 and VoxCeleb2, and place them at `${voxceleb_root}` such that the directory structure is as follows:
 ```
 ${voxceleb_root}/
@@ -77,7 +90,7 @@ Apply Voicefixer noise removal to all audio files using the following script, wh
 ./audio_preprocessing/apply_voicefixer.sh ${voxceleb_root}
 ```
 
-#### 2.1.2 Expresso
+#### 2.2.2 Expresso
 Download the [Expresso dataset](https://github.com/facebookresearch/textlesslib/tree/main/examples/expresso/dataset) and place it at `${expresso_root}` such that the directory structure is as follows:
 ```
 ${expresso_root}/
@@ -99,7 +112,7 @@ Apply loudness normalization to all audio files using the following script, whic
 ./audio_preprocessing/normalize_loudness.sh ${expresso_root}
 ```
 
-#### 2.1.3 EARS
+#### 2.2.3 EARS
 Download the [EARS dataset](https://github.com/facebookresearch/ears_dataset) and place it at `${ears_root}` such that the directory structure is as follows:
 ```
 ${ears_root}/
@@ -113,7 +126,7 @@ Apply loudness normalization to all audio files using the following script, whic
 ./audio_preprocessing/normalize_loudness.sh ${ears_root}
 ```
 
-#### 2.1.4 Emilia
+#### 2.2.4 Emilia
 Download the [Emilia dataset](https://huggingface.co/datasets/amphion/Emilia-Dataset) using the OpenDataLab format available at an older [revision](https://huggingface.co/datasets/amphion/Emilia-Dataset/tree/fc71e07e8572f5f3be1dbd02ed3172a4d298f152) and place it at `${emilia_root}` such that the directory structure is as follows (exactly the same as the [original structure](https://huggingface.co/datasets/amphion/Emilia-Dataset?row=0#structure-on-opendatalab)):
 ```
 ${emilia_root}/
@@ -127,7 +140,7 @@ You can create this directory structure by untarring each `.tar.gz` file (e.g. `
 
 NOTE: If you use the HuggingFace `datasets` format to load the dataset instead of the OpenDataLab format, it will be a WebDataset with audios inside the dataset rather than a particular path, which makes it trickier to map the relative audio paths to real audio paths. In that case, you can use the fact that the filename (e.g. `EN_B00030_S01984_W000037.mp3`) in each `relative_audio_path` (e.g. `EN/EN_B00030/EN_B00030_S01984/mp3/EN_B00030_S01984_W000037.mp3`) is itself a unique identifier to perform the mapping; however, we have not tested this.
 
-#### 2.1.5 Map relative audio paths to real audio paths
+#### 2.2.5 Map relative audio paths to real audio paths
 After downloading the audio files, placing them in the appropriate directories, and preprocessing them, mapping relative audio paths in the dataset to real audio paths is straightforward: simply append the relative audio path to the root directory for each source dataset (the dataset has a `source` column that specifies the source dataset for each row). Here is a helper script to do this that creates a CSV file with the mapping (with columns `relative_audio_path`, `real_audio_path`, and `source`):
 ```bash
 python ./audio_preprocessing/map_relative_audio_paths_to_real_audio_paths.py --voxceleb_root $voxceleb_root --expresso_root $expresso_root --ears_root $ears_root --emilia_root $emilia_root --dataset ajd12342/paraspeechcaps --output_path mapping.csv
