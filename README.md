@@ -128,6 +128,17 @@ Please refer to the [model](https://github.com/ajd12342/paraspeechcaps/tree/main
 ## 4. Citation
 
 If you use this repository, the dataset or models, please cite our work as follows:
+```bibtex
+@misc{diwan2025scalingrichstylepromptedtexttospeech,
+      title={Scaling Rich Style-Prompted Text-to-Speech Datasets}, 
+      author={Anuj Diwan and Zhisheng Zheng and David Harwath and Eunsol Choi},
+      year={2025},
+      eprint={2503.04713},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS},
+      url={https://arxiv.org/abs/2503.04713}, 
+}
+```
 
 ## 5. Acknowledgements
 
