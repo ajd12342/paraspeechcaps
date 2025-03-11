@@ -30,8 +30,8 @@ To perform audio preprocessing to prepare dataset audio files, you will need to 
 ```bash
 # Install ffmpeg (https://ffmpeg.org/download.html) and sox (https://sourceforge.net/projects/sox/).
 conda install conda-forge::ffmpeg conda-forge::sox
-# Install voicefixer (https://github.com/haoheliu/voicefixer) and pydub (https://github.com/jiaaro/pydub)
-pip install git+https://github.com/haoheliu/voicefixer.git pydub
+# Install voicefixer (https://github.com/haoheliu/voicefixer), pydub (https://github.com/jiaaro/pydub) and the HuggingFace CLI (https://huggingface.co/docs/huggingface_hub/en/guides/cli)
+pip install git+https://github.com/haoheliu/voicefixer.git pydub huggingface_hub[cli]
 ```
 
 ## 2. Usage
@@ -153,14 +153,14 @@ python ./audio_preprocessing/add_real_audio_paths.py \
     --output_path ./processed_dataset \
     --validate_exists # Optional: verify that all real audio paths exist
 
-# Or save to the HuggingFace Hub as a private dataset
+# Or save to the HuggingFace Hub 
 python ./audio_preprocessing/add_real_audio_paths.py \
     --sources voxceleb expresso ears emilia \
     --root_dirs "${voxceleb_root}" "${expresso_root}" "${ears_root}" "${emilia_root}" \
     --dataset ajd12342/paraspeechcaps \
     --save_mode hub \
     --output_path your-username/paraspeechcaps-processed \
-    --private \
+    --private \ # Optional: save as a private dataset, requires you to be logged in with `huggingface-cli login`
     --validate_exists # Optional: verify that all real audio paths exist
 ```
 
@@ -169,13 +169,12 @@ The `--validate_exists` flag, if provided, will check that each real audio path 
 After processing, you can load the dataset with the new `audio_path` column:
 ```python
 # If saved to disk
-dataset = load_dataset("processed_dataset")
+dataset = load_dataset("./processed_dataset")
 
 # If saved to the HuggingFace Hub as a private dataset
-dataset = load_dataset("your-username/paraspeechcaps-processed", use_auth_token=True)
+dataset = load_dataset("your-username/paraspeechcaps-processed")
 ```
-
-NOTE: When loading a private dataset from the HuggingFace Hub, you'll need to be logged in with `huggingface-cli login` or provide your HuggingFace token.
+NOTE: When loading a private dataset from the HuggingFace Hub, you'll need to be logged in with `huggingface-cli login`.
 
 ## 3. Dataset Structure
 
