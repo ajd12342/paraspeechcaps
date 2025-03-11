@@ -79,15 +79,15 @@ ${voxceleb_root}/
 ```
 Convert the `.m4a` files in VoxCeleb2 to `.wav` files using the following script, which will create a copy of each audio file with a `.wav` extension in the same directory:
 ```bash
-./audio_preprocessing/convert_m4a_to_wav.sh ${voxceleb_root}/voxceleb2
+./audio_preprocessing/convert_m4a_to_wav.sh "${voxceleb_root}"/voxceleb2
 ```
 Apply loudness normalization to all audio files using the following script, which will create a normalized copy of each `.wav` audio file overwriting the original file (the original file is saved with a `.backup` extension):
 ```bash
-./audio_preprocessing/normalize_loudness.sh ${voxceleb_root}
+./audio_preprocessing/normalize_loudness.sh "${voxceleb_root}"
 ```
 Apply Voicefixer noise removal to all audio files using the following script, which will create a `_voicefixer.wav` copy of each `.wav` audio file in the same directory:
 ```bash
-./audio_preprocessing/apply_voicefixer.sh ${voxceleb_root}
+./audio_preprocessing/apply_voicefixer.sh "${voxceleb_root}"
 ```
 
 #### 2.2.2 Expresso
@@ -105,11 +105,11 @@ ${expresso_root}/
 ```
 Apply VAD segmentation to the Expresso conversational audio files, creating a `audio_48khz/conversational_vad_segmented` directory with the segmented audio files:
 ```bash
-./audio_preprocessing/apply_expresso_vad.sh ${expresso_root}
+./audio_preprocessing/apply_expresso_vad.sh "${expresso_root}"
 ```
 Apply loudness normalization to all audio files using the following script, which will create a normalized copy of each `.wav` audio file overwriting the original file (the original file is saved with a `.backup` extension):
 ```bash
-./audio_preprocessing/normalize_loudness.sh ${expresso_root}
+./audio_preprocessing/normalize_loudness.sh "${expresso_root}"
 ```
 
 #### 2.2.3 EARS
@@ -123,7 +123,7 @@ ${ears_root}/
 ```
 Apply loudness normalization to all audio files using the following script, which will create a normalized copy of each `.wav` audio file overwriting the original file (the original file is saved with a `.backup` extension):
 ```bash
-./audio_preprocessing/normalize_loudness.sh ${ears_root}
+./audio_preprocessing/normalize_loudness.sh "${ears_root}"
 ```
 
 #### 2.2.4 Emilia
@@ -141,11 +141,41 @@ You can create this directory structure by untarring each `.tar.gz` file (e.g. `
 NOTE: If you use the HuggingFace `datasets` format to load the dataset instead of the OpenDataLab format, it will be a WebDataset with audios inside the dataset rather than a particular path, which makes it trickier to map the relative audio paths to real audio paths. In that case, you can use the fact that the filename (e.g. `EN_B00030_S01984_W000037.mp3`) in each `relative_audio_path` (e.g. `EN/EN_B00030/EN_B00030_S01984/mp3/EN_B00030_S01984_W000037.mp3`) is itself a unique identifier to perform the mapping; however, we have not tested this.
 
 #### 2.2.5 Map relative audio paths to real audio paths
-After downloading the audio files, placing them in the appropriate directories, and preprocessing them, mapping relative audio paths in the dataset to real audio paths is straightforward: simply append the relative audio path to the root directory for each source dataset (the dataset has a `source` column that specifies the source dataset for each row). Here is a helper script to do this that creates a CSV file with the mapping (with columns `relative_audio_path`, `real_audio_path`, and `source`):
+After downloading the audio files, placing them in the appropriate directories, and preprocessing them, mapping relative audio paths in the dataset to real audio paths is straightforward: simply append the relative audio path to the root directory for each source dataset (the dataset has a `source` column that specifies the source dataset for each row). Here is a helper script to do this that adds an `audio_path` column to the dataset:
+
 ```bash
-python ./audio_preprocessing/map_relative_audio_paths_to_real_audio_paths.py --voxceleb_root $voxceleb_root --expresso_root $expresso_root --ears_root $ears_root --emilia_root $emilia_root --dataset ajd12342/paraspeechcaps --output_path mapping.csv
+# Save to disk
+python ./audio_preprocessing/add_real_audio_paths.py \
+    --sources voxceleb expresso ears emilia \
+    --root_dirs "${voxceleb_root}" "${expresso_root}" "${ears_root}" "${emilia_root}" \
+    --dataset ajd12342/paraspeechcaps \
+    --save_mode disk \
+    --output_path ./processed_dataset \
+    --validate_exists # Optional: verify that all real audio paths exist
+
+# Or save to the HuggingFace Hub as a private dataset
+python ./audio_preprocessing/add_real_audio_paths.py \
+    --sources voxceleb expresso ears emilia \
+    --root_dirs "${voxceleb_root}" "${expresso_root}" "${ears_root}" "${emilia_root}" \
+    --dataset ajd12342/paraspeechcaps \
+    --save_mode hub \
+    --output_path your-username/paraspeechcaps-processed \
+    --private \
+    --validate_exists # Optional: verify that all real audio paths exist
 ```
 
+The `--validate_exists` flag, if provided, will check that each real audio path exists. This is useful to verify that all required audio files are present and properly organized after all preprocessing steps are complete.
+
+After processing, you can load the dataset with the new `audio_path` column:
+```python
+# If saved to disk
+dataset = load_dataset("processed_dataset")
+
+# If saved to the HuggingFace Hub as a private dataset
+dataset = load_dataset("your-username/paraspeechcaps-processed", use_auth_token=True)
+```
+
+NOTE: When loading a private dataset from the HuggingFace Hub, you'll need to be logged in with `huggingface-cli login` or provide your HuggingFace token.
 
 ## 3. Dataset Structure
 

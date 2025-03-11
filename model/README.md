@@ -33,14 +33,14 @@ The Jupyter notebook shows 3 ways to use our models:
 
 The command line interface uses the ASR-based resampling and classifier-free guidance. Example usage:
 ```bash
-python run_inference.py \
+python inference/run_inference.py \
     --description "In a clear environment, a male voice speaks with a sad tone." \
     --text "Was that your landlord?" \
     --output_file output.wav
 ```
-Run `python run_inference.py --help` to see all the available inference options.
+Run `python inference/run_inference.py --help` to see all the available inference options.
 
 The Gradio web interface is a UI version of the command line interface. It can be launched with:
 ```bash
-python run_inference_gradio_app.py
+python inference/run_inference_gradio_app.py
 ```
