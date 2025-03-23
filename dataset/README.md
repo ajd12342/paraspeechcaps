@@ -87,7 +87,7 @@ Apply loudness normalization to all audio files using the following script, whic
 ```
 Apply Voicefixer noise removal to all audio files using the following script, which will create a `_voicefixer.wav` copy of each `.wav` audio file in the same directory:
 ```bash
-./audio_preprocessing/apply_voicefixer.sh "${voxceleb_root}"
+./audio_preprocessing/apply_voicefixer.py "${voxceleb_root}"
 ```
 
 #### 2.2.2 Expresso
@@ -105,7 +105,7 @@ ${expresso_root}/
 ```
 Apply VAD segmentation to the Expresso conversational audio files, creating a `audio_48khz/conversational_vad_segmented` directory with the segmented audio files:
 ```bash
-./audio_preprocessing/apply_expresso_vad.sh "${expresso_root}"
+./audio_preprocessing/apply_expresso_vad.py "${expresso_root}"
 ```
 Apply loudness normalization to all audio files using the following script, which will create a normalized copy of each `.wav` audio file overwriting the original file (the original file is saved with a `.backup` extension):
 ```bash
