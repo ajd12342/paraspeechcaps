@@ -4,9 +4,10 @@
 SEARCH_DIR="$1"
 INCLUDE_TOTAL=false
 
-# Parse arguments
-while [[ "$#" -gt 1 ]]; do
-    case $2 in
+shift
+# Parse remaining arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
         --show-total)
             INCLUDE_TOTAL=true
             ;;
