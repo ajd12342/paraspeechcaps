@@ -33,6 +33,8 @@ def main():
                         help="If saving to hub, whether to make it private")
     parser.add_argument("--validate_exists", action="store_true",
                         help="Check if audio files exist during mapping")
+    parser.add_argument("--num_workers", type=int, default=4,
+                        help="Number of workers for dataset mapping")
     
     args = parser.parse_args()
     
@@ -47,6 +49,7 @@ def main():
     dataset = load_dataset(args.dataset)
     processed_dataset = dataset.map(
         lambda x: add_audio_paths(x, source_to_root, args.validate_exists),
+        num_pro=args.num_workers,
         desc="Adding real audio paths"
     )
     
