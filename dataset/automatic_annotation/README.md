@@ -7,7 +7,7 @@ The automatic annotation pipeline has three parts:
 ## 1. [Basic Tags](./basic_tags/)
 Extract fundamental acoustic and speaker attributes: **gender**, **pitch**, **speaking rate**, and **noise level**. (Paper Section 3.2)
 
-## 2. [Intrinsic Tag Scaling](./intrinsic/) *(coming soon)*
+## 2. [Intrinsic Tag Scaling](./intrinsic/)
 Scale speaker-level intrinsic tags (e.g., *shrill*, *guttural*, *breathy*) from human-annotated speakers to new speakers using VoxSim perceptual speaker similarity matching. (Paper Section 4.1)
 
 ## 3. [Situational Tag Scaling](./situational/) *(coming soon)*
