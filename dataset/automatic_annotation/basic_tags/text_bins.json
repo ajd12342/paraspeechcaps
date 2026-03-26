@@ -1,0 +1,8 @@
+{
+    "speaker_rate_bins":
+        ["slow speed", "measured speed", "fast speed"],
+    "snr_bins":
+        ["very noisy environment", "noisy environment", "slightly noisy environment", "environment balanced in clarity", "slightly clean environment", "clean environment", "very clean environment"],
+    "speaker_level_pitch_bins":
+        ["low-pitched", "medium-pitched", "high-pitched"]
+}
